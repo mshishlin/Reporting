@@ -6,14 +6,6 @@
 # Log files
 *.log
 
-# Applications
-*.exe
-
 # Developer Folders
 .vs/
-bin/
-obj/
 node_modules/
-
-# Developer Files
-*csproj.user
