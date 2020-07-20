@@ -39,3 +39,10 @@ $bottomStyle: 2px solid $CardBorderColor;
     cursor: pointer;
     text-decoration: underline;
 }
+
+.invalid {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 10px;
+}

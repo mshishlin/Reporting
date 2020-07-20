@@ -1,11 +1,19 @@
 import React from 'react';
 import classes from './Input.module.scss';
+import { ValidationRules } from '../../../validation/ValidationRules';
 
-interface InputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
+export interface InputProps extends React.DetailedHTMLProps<React.InputHTMLAttributes<HTMLInputElement>, HTMLInputElement> {
     errorMessage?: string;
     label?: string;
-    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    shouldValidate?: boolean;
+    touched?: boolean;
+    valid?: boolean;
+    validation?: ValidationRules;
 }
+
+const isInvalid = ({ valid, touched, shouldValidate }: InputProps) => {
+    return shouldValidate && touched && !valid;
+};
 
 export const Input = (props: InputProps) => {
     const inputType = props.type || 'text';
@@ -13,7 +21,8 @@ export const Input = (props: InputProps) => {
 
     const cls = [classes.input];
 
-    if (props.errorMessage) {
+    const inputIsInvalid = isInvalid(props);
+    if (inputIsInvalid) {
         cls.push(classes.invalid);
     }
 
@@ -24,9 +33,15 @@ export const Input = (props: InputProps) => {
     return (
         <div className={cls.join(' ')}>
             <label htmlFor={htmlFor}>{props.label}</label>
-            <input id={htmlFor} type={inputType} value={props.value} onChange={props.onChange} />
+            <input id={htmlFor} name={props.name} onChange={props.onChange} type={inputType} value={props.value} />
 
-            <span>{props.errorMessage}</span>
+            {inputIsInvalid ? <span>{props.errorMessage || 'Введено неверное значение'}</span> : null}
         </div>
     );
+};
+
+export const renderInputs = (formControls: { [propName: string]: InputProps }) => {
+    return (Object.keys(formControls) as Array<keyof typeof formControls>).map((controlName, index) => {
+        return <Input key={index} {...formControls[controlName]} />;
+    });
 };

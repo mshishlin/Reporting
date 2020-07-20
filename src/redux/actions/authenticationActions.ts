@@ -1,18 +1,13 @@
 import { SIGN_IN, SIGN_OUT } from './authenticationActionTypes';
 import { AuthData } from '../../models/AuthData';
-import User from '../../models/User';
 
-export const signIn = (payload: AuthData, users: User[]) => {
+export const signIn = (payload: AuthData) => {
     return (dispatch: any) => {
-        if (users.some((u) => u.login === payload.login && u.password === payload.password)) {
-            localStorage.setItem('signed_in', 'true');
+        localStorage.setItem('signed_in', 'true');
 
-            dispatch({
-                type: SIGN_IN,
-            });
-        } else {
-            console.log('Invalid username or password');
-        }
+        dispatch({
+            type: SIGN_IN,
+        });
     };
 };
 

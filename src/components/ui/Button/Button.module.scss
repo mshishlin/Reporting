@@ -15,8 +15,9 @@
     box-shadow: inset 2px 1px 1px rgba(0, 0, 0, 0.3);
 }
 
-.button:disabled {
-    background-color: #ccc;
+.button:disabled, .button:disabled.button:hover {
+    background-color: rgba(137, 137, 137, 0.05);
+    color: rgba(0, 0, 0, 0.14);
     cursor: not-allowed;
 }
 
