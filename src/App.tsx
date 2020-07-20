@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import Authorization from './containers/Authorization/Authorization';
 import { signOut } from './redux/actions/authenticationActions';
+import { About } from './components/About/About';
+import { Layout } from './components/Layout/Layout';
+import { Main } from './components/Main/Main';
+import Authorization from './containers/Authorization/Authorization';
+import { Report } from './containers/Report/Report';
 
 interface AppProps {
     isAuthenticated: boolean;
@@ -30,22 +34,25 @@ class App extends Component<AppProps> {
     render() {
         return (
             <BrowserRouter>
-                <Switch>
-                    {this.props.isAuthenticated ? (
-                        <>
-                            <Route path="/" exact render={() => <h1>Main page</h1>} />
-                            <Redirect to="/" />
-                        </>
-                    ) : (
-                        <>
+                {this.props.isAuthenticated ? (
+                    <>
+                        <Layout signOut={this.props.signOutSync}>
+                            <Switch>
+                                <Route path="/" exact component={Main} />
+                                <Route path="/about" component={About} />
+                                <Route path="/report" component={Report} />
+                                <Redirect to="/" />
+                            </Switch>
+                        </Layout>
+                    </>
+                ) : (
+                    <>
+                        <Switch>
                             <Route path="/signin" component={Authorization} />
                             <Redirect to="/signin" />
-                        </>
-                    )}
-                </Switch>
-                <header className="App-header">
-                    <button onClick={this.props.signOutSync}>Log out</button>
-                </header>
+                        </Switch>
+                    </>
+                )}
             </BrowserRouter>
         );
     }

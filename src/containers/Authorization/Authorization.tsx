@@ -11,7 +11,13 @@ import User from '../../models/User';
 import { oAuthGoogleSignIn, signIn } from '../../redux/actions/authenticationActions';
 import { validateControl, validateForm } from '../../validation/validation';
 
-interface AuthForm {
+interface AuthorizationProps {
+    oAuthGoogleSignInAsync: () => any;
+    signInAsync: (authData: AuthData) => any;
+    users: User[];
+}
+
+interface AuthorizationState {
     errorMessage: string;
     formControls: {
         login: InputProps;
@@ -20,14 +26,8 @@ interface AuthForm {
     isFormValid: boolean;
 }
 
-interface AuthorizationProps {
-    oAuthGoogleSignInAsync: () => any;
-    signInAsync: (authData: AuthData) => any;
-    users: User[];
-}
-
-class Authorization extends Component<AuthorizationProps> {
-    state: AuthForm = {
+class Authorization extends Component<AuthorizationProps, AuthorizationState> {
+    state = {
         errorMessage: '',
         formControls: {
             login: {
@@ -36,6 +36,7 @@ class Authorization extends Component<AuthorizationProps> {
                 name: 'login',
                 onChange: this.onChangeHandler.bind(this),
                 shouldValidate: true,
+                type: 'text',
                 touched: false,
                 valid: false,
                 validation: {
