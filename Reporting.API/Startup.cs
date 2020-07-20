@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Reporting.API
 {
@@ -25,6 +20,37 @@ namespace Reporting.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+            });
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // Валидация издателя Bearer-токена.
+                        ValidateIssuer = true,
+                        ValidIssuer = AuthenticationOptions.Issuer,
+
+                        // Валидация потребителя Bearer-токена.
+                        ValidateAudience = true,
+                        ValidAudience = AuthenticationOptions.Audience,
+
+                        // Валидация времени существования токена.
+                        ValidateLifetime = true,
+
+                        // Валидация симметричного ключа безопасности.
+                        ValidateIssuerSigningKey = true,
+                        IssuerSigningKey = AuthenticationOptions.GetSymmetricSecurityKey(),
+                    };
+                });
+
             services.AddControllers();
         }
 
@@ -36,10 +62,11 @@ namespace Reporting.API
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            app.UseCors("CorsPolicy");
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
