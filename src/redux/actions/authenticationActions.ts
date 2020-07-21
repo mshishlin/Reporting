@@ -24,8 +24,6 @@ export const oAuthGoogleSignIn = () => {
 };
 
 export const signOut = () => {
-    localStorage.removeItem('signed_in');
-
     return {
         type: SIGN_OUT,
     };

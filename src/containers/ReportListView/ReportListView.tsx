@@ -49,7 +49,7 @@ const ReportListView = (props: ReportListViewProps) => {
                 <div className={classes.column}>Год</div>
                 <div className={classes.column}>Номер квартала</div>
                 <div className={classes.column}>Итоги по разделу I</div>
-                <div className={classes.column}>Итоги по разделу 2</div>
+                <div className={classes.column}>Итоги по разделу II</div>
                 <div className={classes.column}>БАЛАНС</div>
                 <div className={classes['actions-column']}>Действия</div>
             </div>

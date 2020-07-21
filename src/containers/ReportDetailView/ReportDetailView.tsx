@@ -315,6 +315,8 @@ class ReportDetailView extends Component<ReportDetailViewProps, ReportDetailView
         console.log('report to save', report);
 
         this.props.saveReport(report);
+
+        this.props.history.push('/reportslistview')
     }
 
     render() {

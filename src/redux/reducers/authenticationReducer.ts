@@ -4,11 +4,20 @@ interface AuthenticatedReducerState {
     isAuthenticated: boolean;
 }
 
-const initialState: AuthenticatedReducerState = {
-    isAuthenticated: !!localStorage.getItem('signed_in'),
+const initState = () => {
+    const signedInJson = localStorage.getItem('signed_in');
+    if (signedInJson) {
+        return {
+            isAuthenticated: JSON.parse(signedInJson),
+        };
+    }
+
+    return {
+        isAuthenticated: false,
+    };
 };
 
-export default function authentication(state: AuthenticatedReducerState = initialState, action: any) {
+export default function authentication(state: AuthenticatedReducerState = initState(), action: any) {
     switch (action.type) {
         case SIGN_IN: {
             return {
