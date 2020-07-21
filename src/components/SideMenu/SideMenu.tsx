@@ -7,18 +7,13 @@ export const SideMenu = () => {
         <div className={classes['side-menu']}>
             <ul>
                 <li className={classes['menu-item']}>
-                    <NavLink to="/" exact>
-                        Main
+                    <NavLink to="/reportlistview" exact>
+                        Отчеты
                     </NavLink>
                 </li>
                 <li className={classes['menu-item']}>
-                    <NavLink to="/report" exact>
-                        Report
-                    </NavLink>
-                </li>
-                <li className={classes['menu-item']}>
-                    <NavLink to="/about" exact>
-                        About
+                    <NavLink to="/quarterlistview" exact>
+                        Кварталы
                     </NavLink>
                 </li>
             </ul>

@@ -3,8 +3,6 @@ import { AuthData } from '../../models/AuthData';
 
 export const signIn = (payload: AuthData) => {
     return (dispatch: any) => {
-        localStorage.setItem('signed_in', 'true');
-
         dispatch({
             type: SIGN_IN,
         });
@@ -17,8 +15,6 @@ export const oAuthGoogleSignIn = () => {
             .getAuthInstance()
             .signIn()
             .then((googleUser: any) => {
-                localStorage.setItem('signed_in', 'true');
-
                 dispatch({
                     type: SIGN_IN,
                 });

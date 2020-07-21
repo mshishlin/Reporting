@@ -10,7 +10,7 @@ interface LayoutProps {
     signOut: any;
 }
 
-export const Layout = (props: LayoutProps) => {
+const Layout = (props: LayoutProps) => {
     return (
         <div className={classes.layout}>
             <div className={classes['layout-up']}>
@@ -26,3 +26,5 @@ export const Layout = (props: LayoutProps) => {
         </div>
     );
 };
+
+export default Layout;

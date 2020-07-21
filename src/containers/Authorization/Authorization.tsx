@@ -27,39 +27,36 @@ interface AuthorizationState {
 }
 
 class Authorization extends Component<AuthorizationProps, AuthorizationState> {
+    createFormControl = (config: any) => {
+        return {
+            onChange: this.onChangeHandler.bind(this),
+            shouldValidate: true,
+            type: 'text',
+            touched: false,
+            valid: false,
+            validation: {
+                required: true,
+                minLength: 3,
+            },
+            value: '',
+            ...config,
+        };
+    };
+
     state = {
         errorMessage: '',
         formControls: {
-            login: {
+            login: this.createFormControl({
                 errorMessage: 'Минимальная длина логина - 4 символа',
                 label: 'Логин',
                 name: 'login',
-                onChange: this.onChangeHandler.bind(this),
-                shouldValidate: true,
-                type: 'text',
-                touched: false,
-                valid: false,
-                validation: {
-                    required: true,
-                    minLength: 3,
-                },
-                value: '',
-            },
-            password: {
+            }),
+            password: this.createFormControl({
                 errorMessage: 'Минимальная длина пароля - 4 символа',
                 label: 'Пароль',
                 name: 'password',
-                onChange: this.onChangeHandler.bind(this),
-                shouldValidate: true,
-                touched: false,
                 type: 'password',
-                valid: false,
-                validation: {
-                    required: true,
-                    minLength: 3,
-                },
-                value: '',
-            },
+            }),
         },
         isFormValid: false,
     };

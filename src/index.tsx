@@ -25,6 +25,12 @@ const enhancer = composeEnhancers(
 );
 
 const store = createStore(rootReducer, enhancer);
+store.subscribe(() => {
+    const state = store.getState();
+    localStorage.setItem('signed_in', JSON.stringify(state.authentication.isAuthenticated));
+    localStorage.setItem('quarters', JSON.stringify(state.quarters));
+    localStorage.setItem('reports', JSON.stringify(state.reports));
+})
 
 ReactDOM.render(
     <React.StrictMode>

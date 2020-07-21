@@ -16,6 +16,10 @@ export const validateControl = (value: string, validation?: ValidationRules): bo
         isValid = isValid && value.trim().length > validation.minLength;
     }
 
+    if (validation.checkAmountInputs) {
+        isValid = isValid && +value === validation.checkAmount;
+    }
+
     return isValid;
 };
 
@@ -26,7 +30,7 @@ export const validateForm = (formControls: { [propName: string]: InputProps }) =
         if (formControls[controlName].shouldValidate) {
             isValid = isValid && !!formControls[controlName].valid;
         }
-    })
+    });
 
     return isValid;
-}
+};

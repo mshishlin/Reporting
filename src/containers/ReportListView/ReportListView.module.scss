@@ -1,0 +1,56 @@
+.report-list {
+    padding: 20px;
+}
+
+.report-list h2 {
+    color: lightgray;
+    opacity: 0.5;
+    text-align: center;
+}
+
+.table-header {
+    background-color: lightgrey;
+    border: 1px solid black;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+}
+
+.table-row {
+    
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+    height: 30px;
+    width: 100%;
+}
+
+.column {
+    align-items: center;
+    border-right: 1px solid black;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 18%;
+}
+
+.actions-column {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 10%;
+}
+
+.actions-column span {
+    color: red;
+}
+
+.actions-column span:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}

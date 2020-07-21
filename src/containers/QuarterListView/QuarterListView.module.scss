@@ -1,0 +1,49 @@
+.quarter-list {
+    padding: 20px;
+}
+
+.table-header {
+    background-color: lightgrey;
+    border: 1px solid black;
+    font-weight: bold;
+    display: flex;
+    width: 100%;
+}
+
+.table-row {
+    
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    display: flex;
+    height: 30px;
+    width: 100%;
+}
+
+.column {
+    align-items: center;
+    border-right: 1px solid black;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    width: 40%;
+}
+
+.actions-column {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    text-align: center;
+    width: 20%;
+}
+
+.actions-column span {
+    color: red;
+}
+
+.actions-column span:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}

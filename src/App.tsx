@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
-import { signOut } from './redux/actions/authenticationActions';
-import { About } from './components/About/About';
-import { Layout } from './components/Layout/Layout';
-import { Main } from './components/Main/Main';
+import Layout from './components/Layout/Layout';
 import Authorization from './containers/Authorization/Authorization';
-import { Report } from './containers/Report/Report';
+import QuarterListView from './containers/QuarterListView/QuarterListView';
+import ReportDetailView from './containers/ReportDetailView/ReportDetailView';
+import ReportListView from './containers/ReportListView/ReportListView';
+import { signOut } from './redux/actions/authenticationActions';
 
 interface AppProps {
     isAuthenticated: boolean;
@@ -38,10 +38,10 @@ class App extends Component<AppProps> {
                     <>
                         <Layout signOut={this.props.signOutSync}>
                             <Switch>
-                                <Route path="/" exact component={Main} />
-                                <Route path="/about" component={About} />
-                                <Route path="/report" component={Report} />
-                                <Redirect to="/" />
+                                <Route path="/quarterlistview" exact component={QuarterListView} />
+                                <Route path="/reportlistview" exact component={ReportListView} />
+                                <Route path="/reportlistview/:year/:quarterNumber" component={ReportDetailView} />
+                                <Redirect to="/reportlistview" />
                             </Switch>
                         </Layout>
                     </>
