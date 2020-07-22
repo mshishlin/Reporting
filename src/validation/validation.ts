@@ -16,6 +16,14 @@ export const validateControl = (value: string, validation?: ValidationRules): bo
         isValid = isValid && value.trim().length > validation.minLength;
     }
 
+    if (validation.minValue) {
+        isValid = isValid && +value >= validation.minValue;
+    }
+
+    if (validation.maxValue) {
+        isValid = isValid && +value <= validation.maxValue;
+    }
+
     if (validation.checkAmountInputs) {
         isValid = isValid && +value === validation.checkAmount;
     }

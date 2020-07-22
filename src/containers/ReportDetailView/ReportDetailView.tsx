@@ -4,6 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 import classes from './ReportDetailView.module.scss';
 import { Button } from '../../components/ui/Button/Button';
 import { InputProps, renderInputs } from '../../components/ui/Input/Input';
+import { Quarter } from '../../models/Quarter';
 import { Report } from '../../models/Report';
 import { saveReport } from '../../redux/actions/reportActions';
 import { validateControl, validateForm } from '../../validation/validation';
@@ -14,6 +15,7 @@ type ReportDetailViewQueryParams = {
 };
 
 interface ReportDetailViewProps extends RouteComponentProps<ReportDetailViewQueryParams> {
+    quarters: Quarter[];
     reports: Report[];
     saveReport: (report: Report) => any;
 }
@@ -54,6 +56,10 @@ class ReportDetailView extends Component<ReportDetailViewProps, ReportDetailView
         const report = props.reports.find(
             (r) => r.quarter.year === +this.props.match.params.year && r.quarter.quarterNumber === +this.props.match.params.quarterNumber
         );
+
+        if (!report && !props.quarters.some((q) => q.year === +this.props.match.params.year && q.quarterNumber === +this.props.match.params.quarterNumber)) {
+            props.history.push('/reportlistview');
+        }
 
         this.state = {
             formControls: {
@@ -183,7 +189,7 @@ class ReportDetailView extends Component<ReportDetailViewProps, ReportDetailView
                     value: report?.balans || 0,
                 }),
             },
-            isFormValid: true,
+            isFormValid: !!report?.quarter.quarterNumber && !!report.quarter.year,
         };
     }
 
@@ -316,7 +322,7 @@ class ReportDetailView extends Component<ReportDetailViewProps, ReportDetailView
 
         this.props.saveReport(report);
 
-        this.props.history.push('/reportslistview')
+        this.props.history.push('/reportslistview');
     }
 
     render() {
@@ -390,6 +396,7 @@ class ReportDetailView extends Component<ReportDetailViewProps, ReportDetailView
 
 const mapStateToProps = (state: any) => {
     return {
+        quarters: state.quarters.quarters,
         reports: state.reports.reports,
     };
 };

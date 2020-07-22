@@ -8,4 +8,5 @@
 
 # Developer Folders
 .vs/
+build/
 node_modules/

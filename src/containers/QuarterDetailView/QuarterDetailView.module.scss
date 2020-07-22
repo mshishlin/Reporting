@@ -1,0 +1,43 @@
+.quarter {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    overflow: auto;
+    padding: 10px;
+}
+
+.quarter h2 {
+    padding: 0 20px;
+    text-align: center;
+}
+
+.quarter span {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    padding-left: 10px;
+}
+
+.quarter-form {
+    border: 1px solid black;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+    width: 100%;
+}
+
+.quarter-form div {
+    width: 45%;
+}
+
+.save-button {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}

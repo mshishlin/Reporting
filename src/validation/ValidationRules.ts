@@ -1,6 +1,8 @@
 export interface ValidationRules {
-    required?: boolean;
-    minLength?: number;
-    checkAmountInputs?: string[];
     checkAmount?: number;
+    checkAmountInputs?: string[];
+    maxValue?: number;
+    minLength?: number;
+    minValue?: number;
+    required?: boolean;
 }

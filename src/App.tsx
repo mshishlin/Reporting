@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom';
 import Layout from './components/Layout/Layout';
 import Authorization from './containers/Authorization/Authorization';
+import QuarterDetailView from './containers/QuarterDetailView/QuarterDetailView';
 import QuarterListView from './containers/QuarterListView/QuarterListView';
 import ReportDetailView from './containers/ReportDetailView/ReportDetailView';
 import ReportListView from './containers/ReportListView/ReportListView';
@@ -39,8 +40,11 @@ class App extends Component<AppProps> {
                         <Layout signOut={this.props.signOutSync}>
                             <Switch>
                                 <Route path="/quarterlistview" exact component={QuarterListView} />
+                                <Route path="/quarterdetailview/" exact component={QuarterDetailView} />
+                                <Route path="/quarterdetailview/:year/:quarterNumber" component={QuarterDetailView} />
                                 <Route path="/reportlistview" exact component={ReportListView} />
-                                <Route path="/reportlistview/:year/:quarterNumber" component={ReportDetailView} />
+                                <Route path="/reportdetailview" exact component={ReportDetailView} />
+                                <Route path="/reportdetailview/:year/:quarterNumber" component={ReportDetailView} />
                                 <Redirect to="/reportlistview" />
                             </Switch>
                         </Layout>

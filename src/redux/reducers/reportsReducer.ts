@@ -1,5 +1,15 @@
 import { Report } from '../../models/Report';
-import { SAVE_REPORT } from '../actions/reportActionTypes';
+import { SAVE_REPORT, DELETE_REPORT } from '../actions/reportActionTypes';
+
+const reportSortableCallback = (a: Report, b: Report) => {
+    if (a.quarter.year > b.quarter.year) return -1;
+    if (a.quarter.year < b.quarter.year) return 1;
+
+    if (a.quarter.quarterNumber > b.quarter.quarterNumber) return -1;
+    if (a.quarter.quarterNumber < b.quarter.quarterNumber) return 1;
+
+    return 0;
+};
 
 interface ReportsReducerState {
     reports: Report[];
@@ -49,6 +59,18 @@ const initState = () => {
 
 export default function reportsReducer(state: ReportsReducerState = initState(), action: any) {
     switch (action.type) {
+        case DELETE_REPORT: {
+            return {
+                reports: state.reports
+                    .filter(
+                        (r) =>
+                            r.quarter.year !== action.payload.quarter.year ||
+                            r.quarter.quarterNumber !== action.payload.quarter.quarterNumber
+                    )
+                    .sort(reportSortableCallback),
+            };
+        }
+
         case SAVE_REPORT: {
             const reports = state.reports.filter(
                 (r) => r.quarter.year !== action.payload.quarter.year || r.quarter.quarterNumber !== action.payload.quarter.quarterNumber
@@ -56,7 +78,7 @@ export default function reportsReducer(state: ReportsReducerState = initState(),
 
             reports.push(action.payload);
 
-            return { reports };
+            return { reports: reports.sort(reportSortableCallback) };
         }
 
         default:

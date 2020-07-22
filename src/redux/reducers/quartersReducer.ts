@@ -1,5 +1,15 @@
 import { Quarter } from '../../models/Quarter';
-import { DELETE_QUARTER } from '../actions/quarterActionTypes';
+import { DELETE_QUARTER, SAVE_QUARTER } from '../actions/quarterActionTypes';
+
+const quarterSortableCallback = (a: Quarter, b: Quarter) => {
+    if (a.year > b.year) return -1;
+    if (a.year < b.year) return 1;
+
+    if (a.quarterNumber > b.quarterNumber) return -1;
+    if (a.quarterNumber < b.quarterNumber) return 1;
+
+    return 0;
+};
 
 interface QuartersReducerState {
     quarters: Quarter[];
@@ -48,9 +58,22 @@ export default function quartersReducer(state: QuartersReducerState = initState(
     switch (action.type) {
         case DELETE_QUARTER: {
             return {
-                quarters: state.quarters.filter((q) => q.quarterNumber !== action.payload.quarterNumber || q.year !== action.payload.year),
+                quarters: state.quarters
+                    .filter((q) => q.year !== action.payload.year || q.quarterNumber !== action.payload.quarterNumber)
+                    .sort(quarterSortableCallback),
             };
         }
+
+        case SAVE_QUARTER: {
+            const quarters = state.quarters.filter(
+                (q) => q.year !== action.payload.oldQuarter.year || q.quarterNumber !== action.payload.oldQuarter.quarterNumber
+            );
+
+            quarters.push(action.payload.newQuarter);
+
+            return { quarters: quarters.sort(quarterSortableCallback)};
+        }
+
         default:
             return state;
     }

@@ -33,7 +33,7 @@
     height: 100%;
     justify-content: center;
     text-align: center;
-    width: 18%;
+    width: calc(94% / 5);
 }
 
 .actions-column {
@@ -42,10 +42,14 @@
     height: 100%;
     justify-content: center;
     text-align: center;
-    width: 10%;
+    width: 6%;
 }
 
-.actions-column span {
+.actions-column span:first-child {
+    margin-right: 10px;
+}
+
+.actions-column span:last-child {
     color: red;
 }
 
