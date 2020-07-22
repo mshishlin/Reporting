@@ -1,0 +1,8 @@
+@import '../../../theme.scss';
+
+.card {
+    border: 2px solid $CardBorderColor;
+    border-radius: 5px;
+    box-shadow: 0 0 40px $CardBorderColor;
+    min-width: 350px;
+}

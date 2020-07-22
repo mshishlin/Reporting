@@ -1,0 +1,2 @@
+export const DELETE_QUARTER = 'DELETE_QUARTER';
+export const SAVE_QUARTER = 'SAVE_QUARTER';

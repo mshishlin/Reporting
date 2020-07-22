@@ -1,0 +1,30 @@
+@import '../../../theme.scss';
+
+.button {
+    border: 1px solid $ButtonColor;
+    border-radius: 5px;
+    color: black;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-right: 15px;
+    padding: 10px 20px;
+}
+
+.button:active {
+    box-shadow: inset 2px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.button:disabled, .button:disabled.button:hover {
+    background-color: rgba(137, 137, 137, 0.05);
+    color: rgba(0, 0, 0, 0.14);
+    cursor: not-allowed;
+}
+
+.button:focus {
+    outline: none;
+}
+
+.button:hover {
+    cursor: pointer;
+}

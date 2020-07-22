@@ -1,0 +1,12 @@
+@import '../../theme.scss';
+
+.footer {
+    align-items: center;
+    background-color: $FooterBackgroundColor;
+    box-sizing: border-box;
+    display: flex;
+    height: $HeaderHeight;
+    justify-content: center;
+    padding: 0 20px;
+    width: 100%;
+}

@@ -1,0 +1,26 @@
+@import '../../theme.scss';
+
+.side-menu {
+    background-color: $SideMenuBackgroundColor;
+    box-sizing: border-box;
+    flex-direction: column;
+    flex-grow: 1;
+    display: flex;
+    height: 100%;
+    padding: 20px;
+    width: 10%;
+}
+
+.menu-item {
+    margin-bottom: 20px;
+}
+
+.menu-item:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.menu-item a:visited {
+    color: black;
+}
