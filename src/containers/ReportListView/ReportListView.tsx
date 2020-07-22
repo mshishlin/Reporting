@@ -1,4 +1,4 @@
-import React, { RefObject } from 'react';
+import React from 'react';
 import { FaEdit, FaRegWindowClose } from 'react-icons/fa';
 import { connect } from 'react-redux';
 import { RouteComponentProps } from 'react-router-dom';

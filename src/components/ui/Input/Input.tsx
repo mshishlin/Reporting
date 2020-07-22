@@ -30,10 +30,14 @@ export const Input = (props: InputProps) => {
         cls.push(props.className);
     }
 
+    const onFocus = (event: React.FocusEvent<HTMLInputElement>) => {
+        event.target.select();
+    }
+
     return (
         <div className={cls.join(' ')}>
             <label htmlFor={htmlFor}>{props.label}</label>
-            <input id={htmlFor} name={props.name} onChange={props.onChange} type={inputType} value={props.value} />
+            <input id={htmlFor} name={props.name} onChange={props.onChange} onFocus={onFocus} type={inputType} value={props.value} />
 
             {inputIsInvalid ? <span>{props.errorMessage || 'Введено неверное значение'}</span> : null}
         </div>

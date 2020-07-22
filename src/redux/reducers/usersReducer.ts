@@ -12,7 +12,7 @@ const initialState: UsersReducerState = {
         },
         {
             login: 'test2',
-            password: 'test1',
+            password: 'test2',
         },
     ],
 };
