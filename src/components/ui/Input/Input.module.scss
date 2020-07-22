@@ -1,0 +1,40 @@
+@import '../../../theme.scss';
+
+.input {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+
+.input label {
+    display: block;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 3px;
+    padding: 0px;
+}
+
+.input.invalid label {
+    color: red;
+}
+
+.input input {
+    border: 2px solid $CardBorderColor;
+    border-radius: 5px;
+    box-sizing: border-box;
+    display: block;
+    margin: 0 0 5px;
+    outline: none;
+    padding: 7px;
+    width: 100%;
+}
+
+.input.invalid input {
+    border-color: red;
+}
+
+.input span {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+}

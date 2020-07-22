@@ -1,0 +1,48 @@
+@import '../../theme.scss';
+$bottomStyle: 2px solid $CardBorderColor;
+
+.authorization {
+    align-items: center;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    height: 100vh;
+    justify-content: center;
+    width: 100%;
+}
+
+.card-content {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.authorization-form {
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    height: 100%;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.google-link {
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.google-link:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.invalid {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    padding-left: 10px;
+}

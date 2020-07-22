@@ -1,0 +1,27 @@
+@import '../../theme.scss';
+
+.header {
+    align-items: center;
+    background-color: $HeaderBackgroundColor;
+    box-sizing: border-box;
+    display: flex;
+    height: $HeaderHeight;
+    justify-content: space-between;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.exit {
+    align-items: center;
+    border: 1px solid gray;
+    display: flex;
+    height: 40px;
+    justify-content: center;
+    width: 160px;
+}
+
+.exit:hover {
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: underline;
+}
